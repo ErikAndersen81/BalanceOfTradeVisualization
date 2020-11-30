@@ -124,7 +124,7 @@ const Countries = (props:CountriesProps) => {
                 <Country key={record.ReportingEconomyCode}
                     setCountry={props.setCountry}
                     record={record}
-                    fill={props.colorScale(FitToChart(record.exportValue - record.importValue, 1, props.numericScale)).name()} 
+                    fill={props.colorScale(1- FitToChart(record.exportValue - record.importValue, 1, props.numericScale)).name()} 
                     active={active === idx}/>
             </g>
         ))} <Info {...info}/>
