@@ -63,7 +63,7 @@ const mergeRecords = (exportRecs:Array<Record>, importRecs:Array<Record>):Array<
     let records:Array<DoubleRecord> = exportRecs.map(record => {
         let match = importRecs.find((recordB) => recordMatch(record,recordB));
         if (!match) return null; 
-        return {...record, importValue:record.Value, exportValue:match.Value}  as DoubleRecord;
+        return {...record, importValue:match.Value, exportValue:record.Value}  as DoubleRecord;
     }).filter((x):x is DoubleRecord => null !== x);
     return records;
 }
