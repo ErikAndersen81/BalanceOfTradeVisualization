@@ -72,6 +72,12 @@ const Timeline = (props:TimelineProps) => {
     );
   }
 
+const xTicks = (props:{data:Array<Record>}) => {
+    return props.data.map( (record, idx) => {
+        
+    })
+}
+
 type HeaderBtnProps = {
     x:number
     show:boolean
@@ -156,7 +162,7 @@ const Dot = (props:DotProps) => {
     let offset = 5;
     let x = props.cx-(width+offset) < 0 ? props.cx  : props.cx-(width+offset);
     let y = props.cy>50  ? props.cy - (height + offset) : props.cy + offset;
-    let category = props.color === "#d7191c" ? "import" : "export";
+    let category = props.color === "#d7191c" ? "Import" : "Export";
     let info = (
     <defs>
     <g id="dotsInfo">
@@ -168,7 +174,7 @@ const Dot = (props:DotProps) => {
             fill="gray"
             fillOpacity=".3"
             stroke="black"/>
-    <text x={x + width/2 } y={y} fontWeight="bold" fontSize="10" textAnchor="middle" dominantBaseline="text-before-edge">{props.record.ProductOrSector + " " +category  }</text>
+    <text x={x + width/2 } y={y} fontWeight="bold" fontSize="10" textAnchor="middle" dominantBaseline="text-before-edge">{ category  }</text>
     <text x={x +3 } y={y + 12} fontSize="10" dominantBaseline="text-before-edge">{props.record.Year ? "Year:"  + props.record.Year : ""}</text>
     <text x={x +3 } y={y + 23} fontSize="10" dominantBaseline="text-before-edge">{props.record.Unit +": " + props.record.Value}</text>
      </g></defs>)
