@@ -15,7 +15,6 @@ type CountryProps = {
 const Country = (props:CountryProps) => {
     let d = CountryPaths[props.record.ReportingEconomyCode];
     if (d ==="") {
-        //console.log(`No path data for ${props.record.ReportingEconomyCode} `)
         return null;
     }
     const handleClick = (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
