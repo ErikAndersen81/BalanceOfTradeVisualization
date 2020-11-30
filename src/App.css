@@ -39,6 +39,11 @@
   width:90%
 }
 
+.ColorScaleFig {
+  fill:black;
+  stroke:none;
+}
+
 .Chart {
   padding:5px;
   margin: 5px;

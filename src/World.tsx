@@ -38,7 +38,7 @@ const World = (props:WorldProps) => {
     const colorScale = chroma.scale(colorCode);
     return ( <div className="World"><svg
     ref={svgRef}
-   width="80%"
+   width="100%"
    style={{strokeLinejoin: "round", stroke:"#000", fill: "none"}}
    version="1.1"
    viewBox="0 0 2000 1001"
@@ -49,12 +49,13 @@ const World = (props:WorldProps) => {
        type="text/css"
        id="style6"><path fillRule="evenodd"/></style>
   </defs>
-  <rect x="20" y="940" width="40" height="40" fill="white"/>
-  <text x="70" y="960" dominantBaseline="middle" textAnchor="left" fontSize="20" stroke="black" fill="black">Missing data</text>
+  <rect x="20" y="380" width="30" height="30" fill="white"/>
+  <text x="55" y="395" dominantBaseline="middle" textAnchor="left" fontSize="20" stroke="none" fill="black">Missing data</text>
 <text x="1000" y="0" dominantBaseline="text-before-edge" textAnchor="middle" fontSize="37" stroke="black" fill="black">{props.year}</text>
         <Countries  records={records} numericScale={scale} colorScale={colorScale} forwardRef={svgRef} setCountry={props.setCountry}/>
+        <ColorScaleFig  colorScale={colorScale} numericScale={scale} unit={records[0].Unit}/>
 </svg>
-<ColorScaleFig colorScale={colorScale} numericScale={scale} unit={records[0].Unit}/>
+
 </div>
     )
 }
@@ -88,22 +89,22 @@ const ColorScaleFig = (props:{colorScale:chroma.Scale<chroma.Color>, numericScal
             dominantBaseline="middle" 
             textAnchor="end"
             fill="black"
-            fontSize="3">{getPrefix(val, props.numericScale) + val}
+            fontSize="6">{getPrefix(val, props.numericScale) + val}
         </text>
         <path key={"tick" +idx} d={`M 17,${FitToChart(val, 100, props.numericScale)} L 20,${FitToChart(val, 100, props.numericScale)}`} stroke="black" strokeWidth="1"/>
         </g>    
         )
     );
     return (
-        <svg height="400px" width="10%" viewBox="0 -20 30 125" >
+        <svg height="37%" width="15%" viewBox="0 -20 30 125" className="ColorScaleFig" >
   <defs>
     <linearGradient id="grad3" x1="0%" y1="100%" x2="0%" y2="0%">
         {offsets}
     </linearGradient>
   </defs>
-    <text   x="15" y="-13" fontWeight="bold" textAnchor="middle" dominantBaseline="text-before-edge" fontSize="3">
+    <text   x="15" y="-20" textAnchor="middle" dominantBaseline="text-before-edge" fontSize="6">
         <tspan fill="#d7191c">Import</tspan> / <tspan fill="#1a9641">Export</tspan> Balance</text>
-    <text x="15" y="-8" fontWeight="bold" textAnchor="middle" dominantBaseline="text-before-edge" fontSize="3">{props.unit}</text>
+    <text x="15" y="-13"  textAnchor="middle" dominantBaseline="text-before-edge" fontSize="6">{props.unit}</text>
   <rect x="20" y="0"  width="8" height="100" fill="url(#grad3)" stroke="black" />
   {yTicks}
 </svg>
