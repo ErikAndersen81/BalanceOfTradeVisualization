@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import FetchDataHook, { getUrl } from "./FetchDataHook";
+import FetchDataHook from "./FetchDataHook";
 import Loading from "./Loading";
 import { getScale, Scale } from "./Scaling";
 import { FitToChart } from "./Scaling";
@@ -72,11 +72,6 @@ const Timeline = (props:TimelineProps) => {
     );
   }
 
-const xTicks = (props:{data:Array<Record>}) => {
-    return props.data.map( (record, idx) => {
-        
-    })
-}
 
 type HeaderBtnProps = {
     x:number

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { CountryCodeKey, CountryCodeSubField, DoubleRecord, Record } from './types';
+import { CountryCodeKey, CountryCodeSubField, DoubleRecord } from './types';
 import chroma from 'chroma-js';
 import CountryCodes from './CountryCodes';
 import { FitToChart, Scale } from './Scaling';
