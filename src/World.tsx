@@ -5,7 +5,7 @@ import { convertScaleToDivergent, FitToChart, getScale, Scale } from './Scaling'
 import chroma from 'chroma-js';
 import FetchDataHook from './FetchDataHook';
 import Loading from './Loading';
-
+ 
 type WorldProps = {
     country:CountryCodeKey
     setCountry: React.Dispatch<React.SetStateAction<CountryCodeKey>>
@@ -21,7 +21,7 @@ const World = (props:WorldProps) => {
     useEffect( () => {
         importSetParams({i:"ITS_MTV_AM", pc:props.product, ps:props.year});
         exportSetParams({i:"ITS_MTV_AX", pc:props.product, ps:props.year    });
-    }, [props.country, props.product, props.year, importSetParams]);
+    }, [props.country, props.product, props.year, importSetParams, exportSetParams]);
 
     if (exportIsError || importIsError) console.log(exportIsError, importIsError);
     if (exportIsLoading || exportData.length === 0 || importIsLoading || importData.length === 0) return <Loading/>;
