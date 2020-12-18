@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useState } from 'react';
-import { Record, Year } from './types';
-import { FitToChart, Scale } from './Scaling';
-import comparePeriods from './comparePeriods';
+import { Record, Year } from '../types';
+import { FitToChart, Scale } from '../Scaling';
+import comparePeriods from '../comparePeriods';
 
 type DotsProps = {
   xInterval: number;

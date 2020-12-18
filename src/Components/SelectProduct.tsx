@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
-import { DKProducts } from './wtoAPI';
+import { Products } from './WTOAPI';
 
 type SelectProductProps = {
   product: string;
@@ -9,7 +9,7 @@ type SelectProductProps = {
 
 const SelectProduct = (props: SelectProductProps) => {
   const { product, setProduct } = { ...props };
-  const options = DKProducts.map((ic) => (
+  const options = Products.map((ic) => (
     <option key={ic.ProductOrSectorCode} value={ic.ProductOrSectorCode}>
       {ic.ProductOrSector}
     </option>

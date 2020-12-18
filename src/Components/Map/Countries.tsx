@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useState } from 'react';
 import chroma from 'chroma-js';
-import { CountryCodeKey, DoubleRecord } from './types';
-import CountryCodes from './CountryCodes';
+import { CountryCodeKey, DoubleRecord } from '../types';
+import CountryCodes from '../CountryCodes';
 import CountryPaths from './CountryPaths';
-import { FitToChart, Scale } from './Scaling';
+import { FitToChart, Scale } from '../Scaling';
 
 export const CountryKeys: Array<CountryCodeKey> = Object.keys(
   CountryPaths

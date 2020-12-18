@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
-import { Record } from './types';
-import CountryCodes from './CountryCodes';
+import { Record } from '../types';
+import CountryCodes from '../CountryCodes';
 
 type PopupProps = {
   active: boolean;

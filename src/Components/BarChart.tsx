@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ChartProps, CountryCodeKey, Record } from './types';
 import CountryCodes from './CountryCodes';
 import getScale from './getScale';
-import Popup from './Popup';
+import Popup from './Map/Popup';
 
 export const getFlagUrl = (code: CountryCodeKey) => {
   const country = CountryCodes.Alpha2[code];

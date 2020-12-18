@@ -1,4 +1,4 @@
-import { CountryCodeSubField } from "types";
+import { CountryCodeSubField } from "Components/types";
 
 const CountryPaths: CountryCodeSubField = {
   '016': '',

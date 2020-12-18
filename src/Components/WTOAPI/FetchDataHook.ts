@@ -1,5 +1,5 @@
 import  React, {useState, useEffect} from 'react';
-import {Record, CountryCodeKey, Year } from './types';
+import {Record, CountryCodeKey, Year } from '../types';
 
 export const getUrl = (query:Query):string => {
   let url = "https://api.wto.org/timeseries/v1/data?";

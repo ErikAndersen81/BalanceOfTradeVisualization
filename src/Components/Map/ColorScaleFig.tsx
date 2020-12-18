@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import chroma from 'chroma-js';
-import { FitToChart, Scale } from './Scaling';
+import { FitToChart, Scale } from '../Scaling';
 
 type ColorScaleFigProps = {
   colorScale: chroma.Scale<chroma.Color>;

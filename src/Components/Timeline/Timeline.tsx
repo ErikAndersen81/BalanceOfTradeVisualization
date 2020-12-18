@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useEffect, useState } from 'react';
-import FetchDataHook from './FetchDataHook';
-import Loading from './Loading';
-import { getScale, FitToChart } from './Scaling';
-import { CountryCodeKey, Year } from './types';
+import { FetchDataHook } from '../WTOAPI';
+import Loading from '../Loading';
+import { getScale, FitToChart } from '../Scaling';
+import { CountryCodeKey, Year } from '../types';
 import Line from './Line';
 import Dots from './Dots';
 import HeaderBtn from './HeaderBtn';

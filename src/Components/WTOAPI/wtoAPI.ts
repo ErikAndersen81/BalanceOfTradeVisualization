@@ -31,7 +31,7 @@ export const periods:Array<Period> = [
     {"code":"M12","name":"December","description":null,"frequencyCode":"M","displayOrder":112}]
 
   
-export const DKProducts =[
+export const Products =[
   {ProductOrSectorCode:'AG', ProductOrSector:'Agricultural products'},
   {ProductOrSectorCode:'AGFO', ProductOrSector:'Food'},
   {ProductOrSectorCode:'MA', ProductOrSector:'Manufactures'},

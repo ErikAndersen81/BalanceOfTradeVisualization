@@ -1,7 +1,7 @@
 import React from 'react';
-import { FitToChart, Scale } from './Scaling';
-import { Record } from './types';
-import comparePeriods from './comparePeriods';
+import { FitToChart, Scale } from '../Scaling';
+import { Record } from '../types';
+import comparePeriods from '../comparePeriods';
 
 type LineProps = {
   xInterval: number;

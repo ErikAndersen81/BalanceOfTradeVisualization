@@ -1,22 +1,22 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useEffect, useRef } from 'react';
 import chroma from 'chroma-js';
-import ColorScaleFig from 'ColorScaleFig';
+import ColorScaleFig from './ColorScaleFig';
 import Countries, { CountryKeys } from './Countries';
-import { CountryCodeKey, DoubleRecord, Year } from './types';
-import { convertScaleToDivergent, getScale } from './Scaling';
-import FetchDataHook from './FetchDataHook';
-import Loading from './Loading';
-import mergeRecords from './mergeRecords';
+import { CountryCodeKey, DoubleRecord, Year } from '../types';
+import { convertScaleToDivergent, getScale } from '../Scaling';
+import { FetchDataHook } from '../WTOAPI';
+import Loading from '../Loading';
+import mergeRecords from '../mergeRecords';
 
-type WorldProps = {
+type MapProps = {
   country: CountryCodeKey;
   setCountry: React.Dispatch<React.SetStateAction<CountryCodeKey>>;
   product: string;
   year: Year;
 };
 
-const World = (props: WorldProps) => {
+const Map = (props: MapProps) => {
   const { country, setCountry, product, year } = { ...props };
   const svgRef = useRef<SVGSVGElement>(null);
   const {
@@ -118,4 +118,4 @@ const World = (props: WorldProps) => {
     </div>
   );
 };
-export default World;
+export default Map;

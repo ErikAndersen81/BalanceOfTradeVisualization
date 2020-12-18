@@ -1,11 +1,10 @@
 import dotenv from 'dotenv';
-import './App.css';
 import React, { useState } from 'react';
 import Timeline from './Timeline';
-import World from './World';
+import Map from './Map';
 import SelectProduct from './SelectProduct';
 import { CountryCodeKey, Year } from './types';
-import { productName } from './wtoAPI';
+import { productName } from './WTOAPI/wtoAPI';
 import CountryFlag from './CountryFlag';
 import CountryCodes from './CountryCodes';
 
@@ -17,7 +16,7 @@ function App() {
   return (
     <div className='App'>
       <SelectProduct product={product} setProduct={setProduct} />
-      <World
+      <Map
         country={country}
         product={product}
         year={year}
