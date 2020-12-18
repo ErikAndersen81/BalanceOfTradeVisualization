@@ -21,6 +21,8 @@
 .vscode
 .firebase
 .github
+.eslintrc.js
+.prettierrc
 
 npm-debug.log*
 yarn-debug.log*

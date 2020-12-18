@@ -1,6 +1,21 @@
-import  {useState, useEffect} from 'react';
-import {Record, CountryCodeKey } from './types';
-import { Year } from './types';
+import  React, {useState, useEffect} from 'react';
+import {Record, CountryCodeKey, Year } from './types';
+
+export const getUrl = (query:Query):string => {
+  let url = "https://api.wto.org/timeseries/v1/data?";
+  Object.keys(query).forEach((key: string) => {url += `${key}=${query[key as keyof Query]}&`} )
+  return  url
+}
+
+const appendSubscriptionKey = (url:string) => {
+  let apiKey:string;
+    if (process && process.env && process.env.REACT_APP_API_KEY){
+      apiKey = process.env.REACT_APP_API_KEY;
+    } else {
+      apiKey = "None"
+    }
+    return `${url}subscription-key=${apiKey}`; 
+}
 
 type FetchDataResult = {
     data:Array<Record>
@@ -26,14 +41,14 @@ const FetchDataHook = ():FetchDataResult => {
       .then( result => {
             if (result.Dataset) {
               setIsLoading(false);
-              setData(() => {return [...result.Dataset]})
+              setData(() => ([...result.Dataset]))
       }
     }).catch(error => setIsError(error))
   }}
   if (params) fetchData();
  }, [params] 
     )
-    return {data:data, isLoading:isLoading, isError:isError, setParams:setParams};
+    return {data, isLoading, isError, setParams};
 };
 
 type Query = {
@@ -53,22 +68,5 @@ type Query = {
   lang?:string // default language is english
   head?: "H" | "M" // Human readable or machine readable header 
 }
-
-const appendSubscriptionKey = (url:string) => {
-  let apiKey:string;
-    if (process && process.env && process.env.REACT_APP_API_KEY){
-      apiKey = process.env.REACT_APP_API_KEY;
-    } else {
-      apiKey = "None"
-    }
-    return url + "subscription-key=" + apiKey; 
-}
-
-export const getUrl = (query:Query):string => {
-    let url = "https://api.wto.org/timeseries/v1/data?";
-    Object.keys(query).map((key: string) => url += key + "=" + query[key as keyof Query] + "&")
-    return  url
-}
-
 
 export default FetchDataHook;
