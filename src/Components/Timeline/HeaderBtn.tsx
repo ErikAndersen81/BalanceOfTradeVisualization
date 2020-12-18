@@ -26,6 +26,7 @@ const HeaderBtn = (props: HeaderBtnProps) => {
         height={height}
         y={y - height}
         x={x}
+        rx='5'
         className={classes}
       />
       <text

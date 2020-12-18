@@ -45,7 +45,11 @@ const Map = (props: MapProps) => {
     importIsLoading ||
     importData.length === 0
   )
-    return <Loading />;
+    return (
+      <div className='World'>
+        <Loading />
+      </div>
+    );
   const exportRecords = exportData.filter(
     (record) =>
       CountryKeys.findIndex((a) => a === record.ReportingEconomyCode) >= 0

@@ -94,7 +94,7 @@ const Timeline = (props: TimelineProps) => {
   ));
 
   return (
-    <div className='Chart'>
+    <div className='Timeline'>
       <svg
         viewBox={`${xOffset} ${yOffset} 1060 130`}
         preserveAspectRatio='none'

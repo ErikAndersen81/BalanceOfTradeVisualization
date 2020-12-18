@@ -1,10 +1,7 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import img from './load.gif';
 
-const Loading = () => (
-  <div>
-    <img src={img} width='200' alt='LoadingIcon' />
-  </div>
-);
+const Loading = () => <img src={img} alt='LoadingIcon' />;
 
 export default Loading;
