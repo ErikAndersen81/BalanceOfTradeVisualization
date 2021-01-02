@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
 import React, { useEffect, useRef } from 'react';
-import chroma from 'chroma-js';
 import ColorScaleFig from './ColorScaleFig';
 import Countries, { CountryKeys } from './Countries';
 import { CountryCodeKey, DoubleRecord, Year } from '../types';
@@ -8,6 +7,7 @@ import { convertScaleToDivergent, getScale } from '../Scaling';
 import { FetchDataHook } from '../WTOAPI';
 import Loading from '../Loading';
 import mergeRecords from '../mergeRecords';
+import colorScale from '../colorScale';
 
 type MapProps = {
   country: CountryCodeKey;
@@ -66,8 +66,7 @@ const Map = (props: MapProps) => {
     records.map((record) => record.exportValue - record.importValue)
   );
   scale = convertScaleToDivergent(scale);
-  const colorCode = ['d7191c', 'fdae61', 'ffffbf', 'a6d96a', '1a9641'];
-  const colorScale = chroma.scale(colorCode);
+
   return (
     <div className='World'>
       <svg

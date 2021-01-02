@@ -70,9 +70,9 @@ const ColorScaleFig = (props: ColorScaleFigProps) => {
         dominantBaseline='text-before-edge'
         fontSize='6'
       >
-        <tspan fill='#d7191c'>Import</tspan>
+        <tspan fill={colorScale.colors(2)[0]}>Import</tspan>
         {' / '}
-        <tspan fill='#1a9641'>Export </tspan>
+        <tspan fill={colorScale.colors(2)[1]}>Export </tspan>
         Balance
       </text>
       <text

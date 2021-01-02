@@ -7,6 +7,7 @@ import { CountryCodeKey, Year } from '../types';
 import Line from './Line';
 import Dots from './Dots';
 import HeaderBtn from './HeaderBtn';
+import colorScale from '../colorScale';
 
 type TimelineProps = {
   country: CountryCodeKey;
@@ -119,13 +120,13 @@ const Timeline = (props: TimelineProps) => {
             <Line
               xInterval={xInterval}
               scale={scale}
-              color='#1a9641'
+              color={colorScale.colors(2)[0]}
               data={exportData}
             />
             <Dots
               xInterval={xInterval}
               scale={scale}
-              color='#1a9641'
+              color={colorScale.colors(2)[0]}
               data={exportData}
               year={year}
               setYear={setYear}
@@ -137,13 +138,13 @@ const Timeline = (props: TimelineProps) => {
             <Line
               xInterval={xInterval}
               scale={scale}
-              color='#d7191c'
+              color={colorScale.colors(2)[1]}
               data={importData}
             />
             <Dots
               xInterval={xInterval}
               scale={scale}
-              color='#d7191c'
+              color={colorScale.colors(2)[1]}
               data={importData}
               year={year}
               setYear={setYear}
@@ -156,7 +157,7 @@ const Timeline = (props: TimelineProps) => {
           setShow={setShowExport}
           show={showExport}
           text='Export'
-          color='#1a9641'
+          color={colorScale.colors(2)[0]}
         />
         <HeaderBtn
           x={150}
@@ -164,7 +165,7 @@ const Timeline = (props: TimelineProps) => {
           setShow={setShowImport}
           show={showImport}
           text='Import'
-          color='#d7191c'
+          color={colorScale.colors(2)[1]}
         />
       </svg>
     </div>
