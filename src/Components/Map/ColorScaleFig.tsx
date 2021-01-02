@@ -72,7 +72,7 @@ const ColorScaleFig = (props: ColorScaleFigProps) => {
       >
         <tspan fill='#d7191c'>Import</tspan>
         {' / '}
-        <tspan fill='#1a9641'>Export</tspan>
+        <tspan fill='#1a9641'>Export </tspan>
         Balance
       </text>
       <text
