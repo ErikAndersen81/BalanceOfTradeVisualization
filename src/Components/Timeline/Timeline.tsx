@@ -120,13 +120,13 @@ const Timeline = (props: TimelineProps) => {
             <Line
               xInterval={xInterval}
               scale={scale}
-              color={colorScale.colors(2)[0]}
+              color={colorScale.colors(2)[1]}
               data={exportData}
             />
             <Dots
               xInterval={xInterval}
               scale={scale}
-              color={colorScale.colors(2)[0]}
+              color={colorScale.colors(2)[1]}
               data={exportData}
               year={year}
               setYear={setYear}
@@ -138,13 +138,13 @@ const Timeline = (props: TimelineProps) => {
             <Line
               xInterval={xInterval}
               scale={scale}
-              color={colorScale.colors(2)[1]}
+              color={colorScale.colors(2)[0]}
               data={importData}
             />
             <Dots
               xInterval={xInterval}
               scale={scale}
-              color={colorScale.colors(2)[1]}
+              color={colorScale.colors(2)[0]}
               data={importData}
               year={year}
               setYear={setYear}
@@ -157,7 +157,7 @@ const Timeline = (props: TimelineProps) => {
           setShow={setShowExport}
           show={showExport}
           text='Export'
-          color={colorScale.colors(2)[0]}
+          color={colorScale.colors(2)[1]}
         />
         <HeaderBtn
           x={150}
@@ -165,7 +165,7 @@ const Timeline = (props: TimelineProps) => {
           setShow={setShowImport}
           show={showImport}
           text='Import'
-          color={colorScale.colors(2)[1]}
+          color={colorScale.colors(2)[0]}
         />
       </svg>
     </div>
