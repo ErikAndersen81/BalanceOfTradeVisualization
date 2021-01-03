@@ -71,7 +71,7 @@ function App() {
         <SelectProduct product={product} setProduct={setProduct} />
       </div>
       {map}
-      <div className='Header'>
+      <div className='Header' ref={endRef}>
         <span>
           {`Timeline for ${productName[
             product as keyof typeof productName
@@ -80,7 +80,6 @@ function App() {
         </span>
         <CountryFlag country={country} width={32} />
       </div>
-      <div ref={endRef} />
       <Timeline
         country={country}
         product={product}
