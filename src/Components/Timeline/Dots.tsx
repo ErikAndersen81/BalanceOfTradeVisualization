@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Record, Year } from '../types';
 import { FitToChart, Scale } from '../Scaling';
 import comparePeriods from '../comparePeriods';
@@ -32,6 +32,7 @@ const Dot = (props: DotProps) => {
     e.preventDefault();
     setYear(record.Year ? record.Year : year);
   };
+  useEffect(() => {}, [hover]);
   const [width, height] = [120, 40];
   const offset = 5;
   const x = cx - (width + offset) < 0 ? cx : cx - (width + offset);
