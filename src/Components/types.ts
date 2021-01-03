@@ -25,6 +25,8 @@ export type DoubleRecord = {
 }
 
 
+export type categoryT = 'import' | 'export' | 'balance';
+
 type periodeCode = "A" | "M" ;
 
 export type ChartProps = {

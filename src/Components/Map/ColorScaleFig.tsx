@@ -7,10 +7,11 @@ type ColorScaleFigProps = {
   colorScale: chroma.Scale<chroma.Color>;
   numericScale: Scale;
   unit: string;
+  category: string;
 };
 
 const ColorScaleFig = (props: ColorScaleFigProps) => {
-  const { colorScale, numericScale, unit } = { ...props };
+  const { colorScale, numericScale, unit, category } = { ...props };
   const offsets = colorScale
     .colors(10)
     .map((color, idx) => (
@@ -23,7 +24,7 @@ const ColorScaleFig = (props: ColorScaleFigProps) => {
   const getPrefix = (value: number, scale: Scale) => {
     let prefix = '';
     if (value === scale.max) prefix += '>';
-    if (value === scale.min) prefix += '<';
+    if (value === scale.min && value !== 0) prefix += '<';
     return prefix;
   };
   const yTicks = numericScale.ticks.map((val) => (
@@ -51,6 +52,53 @@ const ColorScaleFig = (props: ColorScaleFigProps) => {
       />
     </g>
   ));
+  let label;
+  switch (category) {
+    case 'import': {
+      label = (
+        <text
+          x='15'
+          y='-20'
+          textAnchor='middle'
+          dominantBaseline='text-before-edge'
+          fontSize='6'
+        >
+          Import value in
+        </text>
+      );
+      break;
+    }
+    case 'export': {
+      label = (
+        <text
+          x='15'
+          y='-20'
+          textAnchor='middle'
+          dominantBaseline='text-before-edge'
+          fontSize='6'
+        >
+          Export value in
+        </text>
+      );
+      break;
+    }
+    default: {
+      label = (
+        <text
+          x='15'
+          y='-20'
+          textAnchor='middle'
+          dominantBaseline='text-before-edge'
+          fontSize='6'
+        >
+          <tspan fill={colorScale.colors(2)[0]}>Import</tspan>
+          {' / '}
+          <tspan fill={colorScale.colors(2)[1]}>Export </tspan>
+          Balance
+        </text>
+      );
+    }
+  }
   return (
     <svg
       height='37%'
@@ -63,18 +111,7 @@ const ColorScaleFig = (props: ColorScaleFigProps) => {
           {offsets}
         </linearGradient>
       </defs>
-      <text
-        x='15'
-        y='-20'
-        textAnchor='middle'
-        dominantBaseline='text-before-edge'
-        fontSize='6'
-      >
-        <tspan fill={colorScale.colors(2)[0]}>Import</tspan>
-        {' / '}
-        <tspan fill={colorScale.colors(2)[1]}>Export </tspan>
-        Balance
-      </text>
+      {label}
       <text
         x='15'
         y='-13'

@@ -75,3 +75,12 @@ code {
 .Country {
   cursor: pointer;
 }
+
+.Selectors {
+  display: flex;
+}
+
+.Selectors div,
+span {
+  margin: 4px;
+}

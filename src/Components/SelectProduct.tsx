@@ -16,8 +16,7 @@ const SelectProduct = (props: SelectProductProps) => {
   ));
 
   return (
-    <div className='Select'>
-      <span>Balance of Trade for </span>
+    <div>
       <select
         defaultValue={product}
         onChange={(e) => setProduct(e.target.value)}
