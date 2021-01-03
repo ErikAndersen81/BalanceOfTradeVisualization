@@ -1,13 +1,12 @@
 /* eslint-disable react/no-unused-prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FetchDataHook } from '../WTOAPI';
 import Loading from '../Loading';
 import { getScale, FitToChart } from '../Scaling';
-import { CountryCodeKey, Year } from '../types';
+import { CountryCodeKey, Year, Record } from '../types';
 import Line from './Line';
 import Dots from './Dots';
-import HeaderBtn from './HeaderBtn';
-import colorScale from '../colorScale';
+import mergeRecords from '../mergeRecords';
 
 type TimelineProps = {
   country: CountryCodeKey;
@@ -17,10 +16,8 @@ type TimelineProps = {
 };
 
 // chartHeight refers to height of the part of the chart were the actual lines are displayed = 100
-const Timeline = (props: TimelineProps) => {
+const TimelineBalance = (props: TimelineProps) => {
   const { country, product, setYear, year } = { ...props };
-  const [showExport, setShowExport] = useState<boolean>(true);
-  const [showImport, setShowImport] = useState<boolean>(true);
   const {
     data: exportData,
     isLoading: exportIsLoading,
@@ -56,13 +53,25 @@ const Timeline = (props: TimelineProps) => {
     return null;
   }
   if (exportIsLoading || importIsLoading) return <Loading />;
-  if (exportData.length === 0 || importData === null) return null;
+  if (exportData.length === 0 || importData.length === null) return null;
+  const records: Record[] = mergeRecords(exportData, importData).map(
+    (record) => ({
+      PartnerEconomy: record.PartnerEconomy,
+      PartnerEconomyCode: record.PartnerEconomyCode,
+      PeriodeCode: record.PeriodeCode,
+      ProductOrSector: record.ProductOrSector,
+      ReportingEconomy: record.ReportingEconomy,
+      ReportingEconomyCode: record.ReportingEconomyCode,
+      Unit: record.Unit,
+      Year: record.Year ? record.Year : 1999,
+      Value: record.exportValue - record.importValue,
+    })
+  );
   const xOffset = -60;
   const yOffset = -25;
   const unit = exportData[0].Unit;
-  const values = exportData
-    .map((record) => record.Value)
-    .concat(importData.map((record) => record.Value));
+  const values = records.map((record) => record.Value);
+  if (values.length === 0) return null;
   const scale = getScale(values);
   const xInterval = Math.floor(1000 / exportData.length);
   const yAxisCoords = scale.ticks.map(
@@ -115,63 +124,49 @@ const Timeline = (props: TimelineProps) => {
         </text>
         {yAxis}
         {yLabels}
-        {showExport ? (
-          <>
-            <Line
-              xInterval={xInterval}
-              scale={scale}
-              color={colorScale.colors(2)[1]}
-              data={exportData}
-            />
-            <Dots
-              xInterval={xInterval}
-              category='Export'
-              scale={scale}
-              color={colorScale.colors(2)[1]}
-              data={exportData}
-              year={year}
-              setYear={setYear}
-            />
-          </>
-        ) : null}
-        {showImport ? (
-          <>
-            <Line
-              xInterval={xInterval}
-              scale={scale}
-              color={colorScale.colors(2)[0]}
-              data={importData}
-            />
-            <Dots
-              xInterval={xInterval}
-              category='Import'
-              scale={scale}
-              color={colorScale.colors(2)[0]}
-              data={importData}
-              year={year}
-              setYear={setYear}
-            />
-          </>
-        ) : null}
-        <HeaderBtn
-          x={75}
-          y={0}
-          setShow={setShowExport}
-          show={showExport}
-          text='Export'
-          color={colorScale.colors(2)[1]}
-        />
-        <HeaderBtn
-          x={150}
-          y={0}
-          setShow={setShowImport}
-          show={showImport}
-          text='Import'
-          color={colorScale.colors(2)[0]}
-        />
+        <g>
+          <rect
+            stroke='gray'
+            width='84'
+            height={16}
+            y={-16}
+            x={75}
+            rx='5'
+            className='Button'
+          />
+          <text
+            strokeWidth='0'
+            fill='lightgray'
+            fontSize='12'
+            fontWeight='bold'
+            textAnchor='middle'
+            dominantBaseline='text-after-edge'
+            x={117}
+            y={0}
+          >
+            Trade Balance
+          </text>
+        </g>
+        <>
+          <Line
+            xInterval={xInterval}
+            scale={scale}
+            color='black'
+            data={records}
+          />
+          <Dots
+            xInterval={xInterval}
+            category='Trade Balance'
+            scale={scale}
+            color='black'
+            data={records}
+            year={year}
+            setYear={setYear}
+          />
+        </>
       </svg>
     </div>
   );
 };
 
-export default Timeline;
+export default TimelineBalance;

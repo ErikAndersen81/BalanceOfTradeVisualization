@@ -7,6 +7,7 @@ import comparePeriods from '../comparePeriods';
 type DotsProps = {
   xInterval: number;
   data: Array<Record>;
+  category: string;
   scale: Scale;
   color: string;
   year: Year;
@@ -15,6 +16,7 @@ type DotsProps = {
 
 type DotProps = {
   record: Record;
+  category: string;
   color: string;
   cx: number;
   cy: number;
@@ -23,7 +25,7 @@ type DotProps = {
 };
 
 const Dot = (props: DotProps) => {
-  const { record, color, cx, cy, year, setYear } = { ...props };
+  const { record, category, color, cx, cy, year, setYear } = { ...props };
   const [hover, setHover] = useState<boolean>(false);
 
   const handleClick = (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
@@ -34,7 +36,6 @@ const Dot = (props: DotProps) => {
   const offset = 5;
   const x = cx - (width + offset) < 0 ? cx : cx - (width + offset);
   const y = cy > 50 ? cy - (height + offset) : cy + offset;
-  const category = color === '#d7191c' ? 'Import' : 'Export';
   const info = (
     <defs>
       <g id='dotsInfo'>
@@ -107,7 +108,9 @@ const Dot = (props: DotProps) => {
 };
 
 const Dots = (props: DotsProps) => {
-  const { xInterval, data, scale, color, year, setYear } = { ...props };
+  const { xInterval, data, scale, color, category, year, setYear } = {
+    ...props,
+  };
   if (data.length === 0) return null;
   const dots = data
     .sort(comparePeriods)
@@ -118,6 +121,7 @@ const Dots = (props: DotsProps) => {
         cx={idx * xInterval}
         record={record}
         color={color}
+        category={category}
         year={year}
         setYear={setYear}
       />

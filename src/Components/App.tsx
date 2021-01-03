@@ -7,6 +7,7 @@ import { CountryCodeKey, Year } from './types';
 import { productName } from './WTOAPI/wtoAPI';
 import CountryFlag from './CountryFlag';
 import CountryCodes from './CountryCodes';
+import TimelineBalance from './Timeline/TimelineBalance';
 
 function App() {
   dotenv.config({ path: '../.env' });
@@ -24,14 +25,20 @@ function App() {
       />
       <div className='Header'>
         <span>
-          {`Time line for import and export of ${productName[
+          {`Timeline for ${productName[
             product as keyof typeof productName
           ].toLowerCase()} in
-           ${CountryCodes.Country[country]}`}
+           ${CountryCodes.Country[country]} `}
         </span>
         <CountryFlag country={country} width={32} />
       </div>
       <Timeline
+        country={country}
+        product={product}
+        year={year}
+        setYear={setYear}
+      />
+      <TimelineBalance
         country={country}
         product={product}
         year={year}
