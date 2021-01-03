@@ -96,8 +96,12 @@ const Dot = (props: DotProps) => {
       onClick={handleClick}
     >
       {dot}
-      {hover ? info : null}
-      <use xlinkHref='#dotsInfo' />
+      {hover ? (
+        <>
+          {info}
+          <use href='#dotsInfo' />
+        </>
+      ) : null}
     </g>
   );
 };
