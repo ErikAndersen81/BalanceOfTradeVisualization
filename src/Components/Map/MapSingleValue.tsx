@@ -9,7 +9,6 @@ import Loading from '../Loading';
 import { colorScaleSequential } from '../colorScale';
 
 type MapSingleValueProps = {
-  country: CountryCodeKey;
   setCountry: React.Dispatch<React.SetStateAction<CountryCodeKey>>;
   category: string;
   product: string;
@@ -17,13 +16,13 @@ type MapSingleValueProps = {
 };
 
 const MapSingleValue = (props: MapSingleValueProps) => {
-  const { country, setCountry, product, year, category } = { ...props };
+  const { setCountry, product, year, category } = { ...props };
   const svgRef = useRef<SVGSVGElement>(null);
   const { data, isLoading, isError, setParams } = FetchDataHook();
   useEffect(() => {
     const i = category === 'import' ? 'ITS_MTV_AM' : 'ITS_MTV_AX';
     setParams({ i, pc: product, ps: year });
-  }, [country, product, year, category, setParams]);
+  }, [product, year, category, setParams]);
 
   if (isError) {
     // TODO: show some meaningfull error to the user};

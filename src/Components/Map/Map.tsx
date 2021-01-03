@@ -10,14 +10,13 @@ import mergeRecords from '../mergeRecords';
 import colorScale from '../colorScale';
 
 type MapProps = {
-  country: CountryCodeKey;
   setCountry: React.Dispatch<React.SetStateAction<CountryCodeKey>>;
   product: string;
   year: Year;
 };
 
 const Map = (props: MapProps) => {
-  const { country, setCountry, product, year } = { ...props };
+  const { setCountry, product, year } = { ...props };
   const svgRef = useRef<SVGSVGElement>(null);
   const {
     data: exportData,
@@ -34,7 +33,7 @@ const Map = (props: MapProps) => {
   useEffect(() => {
     importSetParams({ i: 'ITS_MTV_AM', pc: product, ps: year });
     exportSetParams({ i: 'ITS_MTV_AX', pc: product, ps: year });
-  }, [country, product, year, importSetParams, exportSetParams]);
+  }, [product, year, importSetParams, exportSetParams]);
 
   if (exportIsError || importIsError) {
     // TODO: show some meaningfull error to the user};
